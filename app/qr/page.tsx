@@ -3,7 +3,7 @@
 import QRCode from "react-qr-code";
 
 export default function QRPage() {
-  const bookingUrl = "https://buzz-and-fade.vercel.app/book";
+  const bookingUrl = "https://buzz-and-fade.vercel.app/booking";
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-white">
