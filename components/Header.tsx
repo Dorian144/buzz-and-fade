@@ -1,5 +1,5 @@
 // FILE: components/Header.tsx
-// PURPOSE: site-wide top navigation
+// PURPOSE: site-wide top navigation with QR link added
 
 export default function Header() {
     return (
@@ -11,6 +11,7 @@ export default function Header() {
             <a href="/gallery" className="hover:underline">Gallery</a>
             <a href="/booking" className="hover:underline">Book</a>
             <a href="/contact" className="hover:underline">Contact</a>
+            <a href="/qr"      className="hover:underline">QR</a>
           </nav>
         </div>
       </header>
