@@ -1,9 +1,11 @@
+// FILE: app/booking/page.tsx
+
 "use client";
 
 import { useState } from "react";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { db } from "../../lib/firebase";
-import Layout from "../../components/Layout";
+import { db } from "@/lib/firebase";
+import Layout from "@/components/Layout";
 
 export default function BookingPage() {
   const [name, setName] = useState("");
@@ -45,60 +47,64 @@ export default function BookingPage() {
 
   return (
     <Layout>
-      <section className="py-16 px-4 sm:py-20 text-center max-w-xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">Book a Cut</h2>
-        <p className="text-gray-600 mb-8 text-base sm:text-lg">
-          Fill out your details and we’ll confirm your appointment.
-        </p>
-
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-left">
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Full Name"
-            required
-            className="border border-gray-300 px-4 py-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-black/30"
-          />
-          <input
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="Phone Number"
-            required
-            className="border border-gray-300 px-4 py-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-black/30"
-          />
-          <input
-            type="datetime-local"
-            value={dateTime}
-            onChange={(e) => setDateTime(e.target.value)}
-            required
-            className="border border-gray-300 px-4 py-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-black/30"
-          />
-          <textarea
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            placeholder="Style (optional)"
-            rows={3}
-            className="border border-gray-300 px-4 py-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-black/30"
-          />
-          <button
-            type="submit"
-            className="bg-black text-white py-2 rounded hover:bg-gray-800 transition disabled:opacity-50"
-            disabled={loading}
-          >
-            {loading ? "Submitting..." : "Submit Booking"}
-          </button>
-        </form>
-
-        {success && (
-          <p className="mt-4 text-green-600 font-medium">
-            Booking submitted! We'll confirm shortly.
+      <section className="bg-black text-white py-16 px-4 sm:px-8 min-h-screen flex flex-col items-center justify-center">
+        <div className="max-w-xl w-full text-center">
+          <h1 className="text-4xl font-bold mb-6">Book Your Appointment</h1>
+          <p className="text-gray-300 mb-8">
+            Fill out your details and we'll confirm your appointment shortly.
           </p>
-        )}
-        {error && (
-          <p className="mt-4 text-red-600 font-medium">{error}</p>
-        )}
+
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4 text-left bg-gray-900 p-6 rounded-xl border border-gray-700"
+          >
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full Name"
+              required
+              className="bg-gray-800 text-white px-4 py-2 rounded border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            <input
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Phone Number"
+              required
+              className="bg-gray-800 text-white px-4 py-2 rounded border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            <input
+              type="datetime-local"
+              value={dateTime}
+              onChange={(e) => setDateTime(e.target.value)}
+              required
+              className="bg-gray-800 text-white px-4 py-2 rounded border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            <textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="Preferred style or notes (optional)"
+              className="bg-gray-800 text-white px-4 py-2 rounded border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-white text-black font-semibold py-2 rounded hover:bg-gray-300 transition"
+            >
+              {loading ? "Submitting..." : "Confirm Booking"}
+            </button>
+          </form>
+
+          {success && (
+            <p className="mt-4 text-green-400 font-medium">
+              Booking submitted! We'll contact you soon.
+            </p>
+          )}
+          {error && (
+            <p className="mt-4 text-red-400 font-medium">{error}</p>
+          )}
+        </div>
       </section>
     </Layout>
   );

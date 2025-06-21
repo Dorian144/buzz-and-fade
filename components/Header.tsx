@@ -1,38 +1,39 @@
-'use client';
+// FILE: components/Header.tsx
 
-import { useState } from 'react';
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Book", href: "/booking" },
+    { name: "Contact", href: "/contact" },
+    { name: "QR", href: "/qr" },
+  ];
 
   return (
-    <header className="bg-black text-white px-6 py-4">
-      <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold whitespace-nowrap">
-          Buzz&nbsp;&amp;&nbsp;Fade 💈
-        </h1>
-
-        {/* Mobile toggle button */}
-        <button
-          className="sm:hidden text-white focus:outline-none"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? '✕' : '☰'}
-        </button>
-
-        {/* Navigation links */}
-        <nav
-          className={`flex-col sm:flex-row sm:flex space-y-4 sm:space-y-0 sm:space-x-6 absolute sm:static top-16 left-0 w-full sm:w-auto bg-black sm:bg-transparent px-6 sm:px-0 z-50 ${
-            menuOpen ? 'flex' : 'hidden sm:flex'
-          }`}
-        >
-          <a href="/" className="hover:underline">Home</a>
-          <a href="/gallery" className="hover:underline">Gallery</a>
-          <a href="/booking" className="hover:underline">Book</a>
-          <a href="/contact" className="hover:underline">Contact</a>
-          <a href="/qr" className="hover:underline">QR</a>
-        </nav>
-      </div>
+    <header className="bg-black text-white py-6 px-8 flex justify-between items-center">
+      <Link href="/" className="text-2xl font-extrabold tracking-wider">
+        BUZZ & FADE 💈
+      </Link>
+      <nav className="space-x-8 text-sm font-semibold uppercase tracking-wide">
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`hover:underline ${
+              pathname === item.href ? "underline underline-offset-4" : ""
+            }`}
+          >
+            {item.name}
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 }
