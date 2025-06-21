@@ -1,6 +1,3 @@
-// FILE: app/booking/page.tsx
-// ACTION: Replace entire file
-
 "use client";
 
 import { useState } from "react";
@@ -30,7 +27,7 @@ export default function BookingPage() {
         dateTime,
         notes,
         createdAt: Timestamp.now(),
-        confirmed: false, // we’ll use this later with the bot
+        confirmed: false,
       });
 
       setSuccess(true);
@@ -48,9 +45,9 @@ export default function BookingPage() {
 
   return (
     <Layout>
-      <section className="py-20 text-center max-w-xl mx-auto">
-        <h2 className="text-4xl font-bold mb-6">Book a Cut</h2>
-        <p className="text-gray-600 mb-8">
+      <section className="py-16 px-4 sm:py-20 text-center max-w-xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4">Book a Cut</h2>
+        <p className="text-gray-600 mb-8 text-base sm:text-lg">
           Fill out your details and we’ll confirm your appointment.
         </p>
 
@@ -61,7 +58,7 @@ export default function BookingPage() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Full Name"
             required
-            className="border px-4 py-2 rounded"
+            className="border border-gray-300 px-4 py-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-black/30"
           />
           <input
             type="tel"
@@ -69,24 +66,25 @@ export default function BookingPage() {
             onChange={(e) => setPhone(e.target.value)}
             placeholder="Phone Number"
             required
-            className="border px-4 py-2 rounded"
+            className="border border-gray-300 px-4 py-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-black/30"
           />
           <input
             type="datetime-local"
             value={dateTime}
             onChange={(e) => setDateTime(e.target.value)}
             required
-            className="border px-4 py-2 rounded"
+            className="border border-gray-300 px-4 py-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-black/30"
           />
           <textarea
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Style (optional)"
-            className="border px-4 py-2 rounded"
+            rows={3}
+            className="border border-gray-300 px-4 py-2 rounded shadow-sm focus:outline-none focus:ring focus:ring-black/30"
           />
           <button
             type="submit"
-            className="bg-black text-white py-2 rounded hover:bg-gray-800 transition"
+            className="bg-black text-white py-2 rounded hover:bg-gray-800 transition disabled:opacity-50"
             disabled={loading}
           >
             {loading ? "Submitting..." : "Submit Booking"}
