@@ -11,8 +11,7 @@ import { format } from "date-fns";
 export default function BookNowPage() {
   const [form, setForm] = useState({
     name: "",
-    email: "",
-    phone: "",
+    phoneNumber: "",
     date: null as Date | null,
     time: "",
     service: "",
@@ -55,7 +54,7 @@ export default function BookNowPage() {
         status: "Pending"
       });
       setSubmitted(true);
-      setForm({ name: "", email: "", phone: "", date: null, time: "", service: "", notes: "" });
+      setForm({ name: "", phoneNumber: "", date: null, time: "", service: "", notes: "" });
     } catch (error) {
       console.error("Error submitting booking:", error);
       alert("There was an error submitting your booking. Please try again.");
@@ -129,30 +128,19 @@ export default function BookNowPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Phone Number *
                 </label>
                 <input
                   type="tel"
                   required
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  value={form.phoneNumber}
+                  onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
                   className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
                   placeholder="Enter your phone number"
                 />
+                <p className="text-xs text-gray-600 mt-1">
+                  By providing your phone number, you agree to receive appointment-related SMS reminders.
+                </p>
               </div>
 
               <div>

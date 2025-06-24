@@ -25,8 +25,7 @@ export default function AdminBookingPage() {
   const [view, setView] = useState<"calendar" | "list">("calendar");
   const [form, setForm] = useState({
     name: "",
-    email: "",
-    phone: "",
+    phoneNumber: "",
     date: "",
     time: "",
     service: "",
@@ -59,8 +58,7 @@ export default function AdminBookingPage() {
     if (selectedBooking) {
       await updateBooking(selectedBooking.id, {
         name: form.name,
-        email: form.email,
-        phone: form.phone,
+        phoneNumber: form.phoneNumber,
         service: form.service,
         dateTime: `${form.date}T${form.time}`,
         confirmed: form.status === "Confirmed",
@@ -71,7 +69,7 @@ export default function AdminBookingPage() {
     }
     setShowModal(false);
     setSelectedBooking(null);
-    setForm({ name: "", email: "", phone: "", date: "", time: "", service: "", notes: "", status: "Pending" });
+    setForm({ name: "", phoneNumber: "", date: "", time: "", service: "", notes: "", status: "Pending" });
     loadBookings();
   };
 
@@ -80,8 +78,7 @@ export default function AdminBookingPage() {
     setSelectedBooking(booking);
     setForm({
       name: booking.name,
-      email: booking.email || "",
-      phone: booking.phone || "",
+      phoneNumber: booking.phoneNumber || "",
       date: format(dateTime, "yyyy-MM-dd"),
       time: format(dateTime, "HH:mm"),
       service: booking.service,
@@ -271,11 +268,8 @@ export default function AdminBookingPage() {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div>
                             <div className="text-sm font-medium text-gray-900">{booking.name}</div>
-                            {booking.email && (
-                              <div className="text-sm text-gray-500">{booking.email}</div>
-                            )}
-                            {booking.phone && (
-                              <div className="text-sm text-gray-500">{booking.phone}</div>
+                            {booking.phoneNumber && (
+                              <div className="text-sm text-gray-500">{booking.phoneNumber}</div>
                             )}
                           </div>
                         </td>
@@ -354,19 +348,16 @@ export default function AdminBookingPage() {
                   className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 placeholder-gray-500"
                 />
                 <input
-                  type="email"
-                  placeholder="Email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 placeholder-gray-500"
-                />
-                <input
                   type="tel"
-                  placeholder="Phone"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  placeholder="Phone Number *"
+                  value={form.phoneNumber}
+                  onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
                   className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 placeholder-gray-500"
                 />
+                {/* We ask for phone number to send SMS reminders. */}
+                <p className="text-xs text-gray-600 mt-1">
+                  By providing your phone number, you agree to receive appointment-related SMS reminders.
+                </p>
                 <input
                   type="date"
                   value={form.date}
@@ -445,7 +436,7 @@ export default function AdminBookingPage() {
                     onClick={() => {
                       setShowModal(false);
                       setSelectedBooking(null);
-                      setForm({ name: "", email: "", phone: "", date: "", time: "", service: "", notes: "", status: "Pending" });
+                      setForm({ name: "", phoneNumber: "", date: "", time: "", service: "", notes: "", status: "Pending" });
                     }}
                     className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
                   >

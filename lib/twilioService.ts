@@ -49,36 +49,36 @@ export const makeCall = async (config: TwilioConfig, call: CallMessage) => {
 export const sendBookingReminder = async (booking: any) => {
   const message = `Hi ${booking.name}! This is a reminder for your appointment tomorrow at ${booking.time} for ${booking.service}. Please call us if you need to reschedule.`;
   
-  if (booking.phone) {
+  if (booking.phoneNumber) {
     // await sendSMS(twilioConfig, {
-    //   to: booking.phone,
+    //   to: booking.phoneNumber,
     //   body: message
     // });
-    console.log('Reminder SMS would be sent to:', booking.phone);
+    console.log('Reminder SMS would be sent to:', booking.phoneNumber);
   }
 };
 
 export const sendBookingConfirmation = async (booking: any) => {
   const message = `Hi ${booking.name}! Your appointment for ${booking.service} on ${booking.date} at ${booking.time} has been confirmed. We look forward to seeing you!`;
   
-  if (booking.phone) {
+  if (booking.phoneNumber) {
     // await sendSMS(twilioConfig, {
-    //   to: booking.phone,
+    //   to: booking.phoneNumber,
     //   body: message
     // });
-    console.log('Confirmation SMS would be sent to:', booking.phone);
+    console.log('Confirmation SMS would be sent to:', booking.phoneNumber);
   }
 };
 
 export const makeConfirmationCall = async (booking: any) => {
-  const message = `Hi ${booking.name}, this is Buzz and Fade calling to confirm your appointment for ${booking.service} on ${booking.date} at ${booking.time}. Please press 1 to confirm, 2 to reschedule, or 3 to cancel.`;
+  const message = `Hi ${booking.name}, this is Buzz and Cut calling to confirm your appointment for ${booking.service} on ${booking.date} at ${booking.time}. Please press 1 to confirm, 2 to reschedule, or 3 to cancel.`;
   
-  if (booking.phone) {
+  if (booking.phoneNumber) {
     // await makeCall(twilioConfig, {
-    //   to: booking.phone,
+    //   to: booking.phoneNumber,
     //   message: message
     // });
-    console.log('Confirmation call would be made to:', booking.phone);
+    console.log('Confirmation call would be made to:', booking.phoneNumber);
   }
 };
 

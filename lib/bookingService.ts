@@ -16,8 +16,7 @@ import { format, parseISO } from "date-fns";
 export interface Booking {
   id: string;
   name: string;
-  email?: string;
-  phone?: string;
+  phoneNumber: string;
   service: string;
   dateTime: string;
   confirmed: boolean;
@@ -76,8 +75,7 @@ export const addBooking = async (form: any) => {
   const ref = collection(db, "bookings");
   await addDoc(ref, {
     name: form.name,
-    email: form.email || "",
-    phone: form.phone || "",
+    phoneNumber: form.phoneNumber || "",
     service: form.service,
     dateTime: `${form.date}T${form.time}`,
     confirmed: form.status === "Confirmed",
