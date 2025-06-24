@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FaCut } from "react-icons/fa";
 
 export default function Header() {
   const pathname = usePathname();
@@ -11,24 +12,25 @@ export default function Header() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Gallery", href: "/gallery" },
-    { name: "Book", href: "/booking" },
+    { name: "Book Now", href: "/book-now" },
+    { name: "Admin", href: "/booking" },
     { name: "Contact", href: "/contact" },
     { name: "QR", href: "/qr" },
   ];
 
   return (
-    <header className="bg-black text-white py-6 px-8 flex justify-between items-center">
-      <Link href="/" className="text-2xl font-extrabold tracking-wider">
-        BUZZ & FADE 💈
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur shadow-md py-4 px-8 flex justify-between items-center border-b border-gray-200">
+      <Link href="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-wider text-gray-900">
+        <FaCut className="text-blue-600" />
+        Buzz & Cut
       </Link>
-      <nav className="space-x-8 text-sm font-semibold uppercase tracking-wide">
+      <nav className="flex gap-6 text-base font-semibold uppercase tracking-wide">
         {navItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className={`hover:underline ${
-              pathname === item.href ? "underline underline-offset-4" : ""
-            }`}
+            className={`px-2 py-1 rounded transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+              ${pathname === item.href ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-blue-50 hover:text-blue-700"}`}
           >
             {item.name}
           </Link>
