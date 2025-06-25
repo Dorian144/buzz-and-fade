@@ -101,17 +101,17 @@ export default function BookNowPage() {
 
   return (
     <Layout>
-      <div className="max-w-2xl mx-auto py-10 px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">Book Your Appointment</h1>
-          <p className="text-gray-300 text-lg">
+      <div className="max-w-2xl mx-auto py-6 sm:py-10 px-4">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3 sm:mb-4">Book Your Appointment</h1>
+          <p className="text-gray-300 text-base sm:text-lg">
             Choose your preferred service and time slot. We'll confirm your booking within 24 hours.
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Full Name *
@@ -121,7 +121,7 @@ export default function BookNowPage() {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
+                  className="w-full border border-gray-300 px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -135,7 +135,7 @@ export default function BookNowPage() {
                   required
                   value={form.phoneNumber}
                   onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
-                  className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
+                  className="w-full border border-gray-300 px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
                   placeholder="Enter your phone number"
                 />
                 <p className="text-xs text-gray-600 mt-1">
@@ -153,7 +153,7 @@ export default function BookNowPage() {
                   minDate={getMinDate()}
                   dateFormat="dd/MM/yyyy"
                   placeholderText="dd/mm/yyyy"
-                  className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
+                  className="w-full border border-gray-300 px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
                   required
                   showPopperArrow={false}
                 />
@@ -176,7 +176,7 @@ export default function BookNowPage() {
                   styles={{
                     control: (base: any, state: any) => ({
                       ...base,
-                      minHeight: '48px',
+                      minHeight: '44px',
                       fontSize: '1rem',
                       backgroundColor: '#f3f4f6',
                       borderColor: state.isFocused ? '#2563eb' : '#6b7280',
@@ -209,7 +209,7 @@ export default function BookNowPage() {
                 />
               </div>
 
-              <div>
+              <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Service *
                 </label>
@@ -217,7 +217,7 @@ export default function BookNowPage() {
                   required
                   value={form.service}
                   onChange={(e) => setForm({ ...form, service: e.target.value })}
-                  className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
+                  className="w-full border border-gray-300 px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="">Select a service</option>
                   {services.map((service) => (
@@ -236,15 +236,15 @@ export default function BookNowPage() {
               <textarea
                 value={form.notes}
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                rows={4}
-                className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
+                rows={3}
+                className="w-full border border-gray-300 px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
                 placeholder="Any special requests or additional information..."
               />
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h3 className="font-medium text-blue-900 mb-2">Important Information</h3>
-              <ul className="text-sm text-blue-800 space-y-1">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
+              <h3 className="font-medium text-blue-900 mb-2 text-sm sm:text-base">Important Information</h3>
+              <ul className="text-xs sm:text-sm text-blue-800 space-y-1">
                 <li>• Bookings are subject to availability confirmation</li>
                 <li>• We'll contact you within 24 hours to confirm your appointment</li>
                 <li>• Please arrive 10 minutes before your scheduled time</li>

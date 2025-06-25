@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 import Layout from "../../components/Layout";
 
 export default function QRPage() {
-  const bookingUrl = "https://buzz-and-fade.vercel.app/booking";
+  const bookingUrl = "https://buzz-and-fade.vercel.app/book-now";
 
   return (
     <Layout>

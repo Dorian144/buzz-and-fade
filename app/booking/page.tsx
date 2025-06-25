@@ -139,24 +139,24 @@ export default function AdminBookingPage() {
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto py-10 px-4">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-white">Admin Booking Management</h1>
-          <div className="flex gap-2">
+      <div className="max-w-7xl mx-auto py-6 sm:py-10 px-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white">Admin Booking Management</h1>
+          <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setView("calendar")}
-              className={`px-4 py-2 rounded ${view === "calendar" ? "bg-blue-600 text-white" : "bg-gray-600 text-white"}`}
+              className={`px-3 sm:px-4 py-2 rounded text-sm ${view === "calendar" ? "bg-blue-600 text-white" : "bg-gray-600 text-white"}`}
             >
               Calendar View
             </button>
             <button
               onClick={() => setView("list")}
-              className={`px-4 py-2 rounded ${view === "list" ? "bg-blue-600 text-white" : "bg-gray-600 text-white"}`}
+              className={`px-3 sm:px-4 py-2 rounded text-sm ${view === "list" ? "bg-blue-600 text-white" : "bg-gray-600 text-white"}`}
             >
               List View
             </button>
             <button
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+              className="bg-green-600 text-white px-3 sm:px-4 py-2 rounded hover:bg-green-700 text-sm"
               onClick={() => setShowModal(true)}
             >
               + New Booking
@@ -165,19 +165,19 @@ export default function AdminBookingPage() {
         </div>
 
         {/* Calendar Navigation */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
           <button
             onClick={() => setCurrentDate(subMonths(currentDate, 1))}
-            className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+            className="bg-gray-600 text-white px-3 sm:px-4 py-2 rounded hover:bg-gray-700 text-sm"
           >
             Previous Month
           </button>
-          <h2 className="text-2xl font-bold text-white">
+          <h2 className="text-xl sm:text-2xl font-bold text-white text-center">
             {format(currentDate, "MMMM yyyy")}
           </h2>
           <button
             onClick={() => setCurrentDate(addMonths(currentDate, 1))}
-            className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+            className="bg-gray-600 text-white px-3 sm:px-4 py-2 rounded hover:bg-gray-700 text-sm"
           >
             Next Month
           </button>
@@ -190,7 +190,7 @@ export default function AdminBookingPage() {
             {/* Calendar Header */}
             <div className="grid grid-cols-7 bg-gray-100">
               {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => (
-                <div key={day} className="p-3 text-center font-semibold text-gray-700">
+                <div key={day} className="p-2 sm:p-3 text-center font-semibold text-gray-700 text-xs sm:text-sm">
                   {day}
                 </div>
               ))}
@@ -201,8 +201,8 @@ export default function AdminBookingPage() {
               {calendarDays.map((day, index) => {
                 const dayBookings = getBookingsForDate(day);
                 return (
-                  <div key={index} className={getDayClass(day)}>
-                    <div className="text-sm font-medium text-gray-900 mb-1">
+                  <div key={index} className={`${getDayClass(day)} min-h-[60px] sm:min-h-[80px]`}>
+                    <div className="text-xs sm:text-sm font-medium text-gray-900 mb-1">
                       {format(day, "d")}
                     </div>
                     <div className="space-y-1">
@@ -217,7 +217,8 @@ export default function AdminBookingPage() {
                           onClick={() => handleEdit(booking)}
                           title={`${booking.name} - ${booking.service}`}
                         >
-                          {booking.name}
+                          <span className="hidden sm:inline">{booking.name}</span>
+                          <span className="sm:hidden">{booking.name.split(' ')[0]}</span>
                         </div>
                       ))}
                       {dayBookings.length > 2 && (
@@ -237,22 +238,22 @@ export default function AdminBookingPage() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Customer
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Date & Time
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Service
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Reminder
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -265,26 +266,26 @@ export default function AdminBookingPage() {
                     
                     return (
                       <tr key={booking.id} className={isToday ? "bg-yellow-50" : isTomorrow ? "bg-blue-50" : ""}>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                           <div>
                             <div className="text-sm font-medium text-gray-900">{booking.name}</div>
                             {booking.phoneNumber && (
-                              <div className="text-sm text-gray-500">{booking.phoneNumber}</div>
+                              <div className="text-xs sm:text-sm text-gray-500">{booking.phoneNumber}</div>
                             )}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-900">
                             {formatDate(booking.dateTime)}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-xs sm:text-sm text-gray-500">
                             {format(dateTime, "h:mm a")}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
                           {booking.service}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                           <button
                             onClick={() => handleStatusToggle(booking.id, !booking.confirmed)}
                             className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
@@ -296,22 +297,22 @@ export default function AdminBookingPage() {
                             {booking.confirmed ? "Confirmed" : "Pending"}
                           </button>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                           {booking.reminderSent ? (
-                            <span className="text-green-600 text-sm">✓ Sent</span>
+                            <span className="text-green-600 text-xs sm:text-sm">✓ Sent</span>
                           ) : (
                             <button
                               onClick={() => handleReminderSent(booking.id)}
-                              className="text-blue-600 hover:text-blue-800 text-sm"
+                              className="text-blue-600 hover:text-blue-800 text-xs sm:text-sm"
                             >
                               Mark Sent
                             </button>
                           )}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm font-medium">
                           <button
                             onClick={() => handleEdit(booking)}
-                            className="text-indigo-600 hover:text-indigo-900 mr-3"
+                            className="text-indigo-600 hover:text-indigo-900 mr-2 sm:mr-3"
                           >
                             Edit
                           </button>
@@ -333,13 +334,13 @@ export default function AdminBookingPage() {
 
         {/* Booking Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
-              <h2 className="text-xl font-bold mb-4 text-gray-900">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+              <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-900">
                 {selectedBooking ? "Edit Booking" : "New Booking"}
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <input
                   type="text"
                   placeholder="Customer Name *"
@@ -375,7 +376,7 @@ export default function AdminBookingPage() {
                   classNamePrefix="react-select"
                   isSearchable
                   styles={{
-                    control: (base, state) => ({
+                    control: (base: any, state: any) => ({
                       ...base,
                       minHeight: '40px',
                       fontSize: '1rem',
@@ -384,12 +385,12 @@ export default function AdminBookingPage() {
                       boxShadow: state.isFocused ? '0 0 0 2px #2563eb33' : base.boxShadow,
                       color: '#111827',
                     }),
-                    menu: (base) => ({
+                    menu: (base: any) => ({
                       ...base,
                       zIndex: 9999,
                       backgroundColor: '#fff',
                     }),
-                    option: (base, state) => ({
+                    option: (base: any, state: any) => ({
                       ...base,
                       backgroundColor: state.isSelected
                         ? '#2563eb'
@@ -398,11 +399,11 @@ export default function AdminBookingPage() {
                         : '#fff',
                       color: state.isSelected ? '#fff' : '#111827',
                     }),
-                    singleValue: (base) => ({
+                    singleValue: (base: any) => ({
                       ...base,
                       color: '#111827',
                     }),
-                    placeholder: (base) => ({
+                    placeholder: (base: any) => ({
                       ...base,
                       color: '#6b7280',
                     }),
@@ -438,14 +439,14 @@ export default function AdminBookingPage() {
                       setSelectedBooking(null);
                       setForm({ name: "", phoneNumber: "", date: "", time: "", service: "", notes: "", status: "Pending" });
                     }}
-                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                    className="px-3 sm:px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 text-sm"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleSubmit}
                     disabled={!form.name || !form.service || !form.date || !form.time}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                    className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm"
                   >
                     {selectedBooking ? "Update" : "Add"} Booking
                   </button>
